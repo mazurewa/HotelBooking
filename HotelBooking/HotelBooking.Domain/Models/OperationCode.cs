@@ -3,8 +3,8 @@
     public static class OperationCode
     {
         public const string SendingEmail = "SendingEmail";
-        public const string ExternalPayment = "ExternalPayment";
-        public const string ExternalReservation = "ExternalReservation";
+        public const string Payment = "Payment";
+        public const string Reservation = "Reservation";
         public const string RecheckingPrice = "RecheckingPrice";
     }
 }

@@ -1,5 +1,5 @@
 ﻿using HotelBooking.App.Operations;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using HotelBooking.App.OperationsProcessing;
 using HotelBooking.App.ReservationProcessing;
 using HotelBooking.Domain.DataAccess;
@@ -23,10 +23,10 @@ namespace HotelBooking.App.Configuration
             Bind<IOperation>().To<ReservationSystemManager>();
             Bind<IOperation>().To<PriceValidator>();
 
-            Bind<ExternalEmailSystem>().ToSelf();
-            Bind<ExternalHotelPriceValidator>().ToSelf();
-            Bind<ExternalHotelReservationSystem>().ToSelf();
-            Bind<ExternalPaymentSystem>().ToSelf();
+            Bind<EmailSystem>().ToSelf();
+            Bind<HotelPriceValidator>().ToSelf();
+            Bind<HotelReservationSystem>().ToSelf();
+            Bind<PaymentSystem>().ToSelf();
         }
     }
 }

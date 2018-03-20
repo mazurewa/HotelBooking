@@ -16,13 +16,13 @@ namespace HotelBooking.App.Tests
             sendingEmail.Stub(x => x.OperationName).Return(OperationCode.SendingEmail);
             operations[0] = sendingEmail;
 
-            var externalPayment = MockRepository.GenerateStub<IOperation>();
-            externalPayment.Stub(x => x.OperationName).Return(OperationCode.ExternalPayment);
-            operations[1] = externalPayment;
+            var payment = MockRepository.GenerateStub<IOperation>();
+            payment.Stub(x => x.OperationName).Return(OperationCode.Payment);
+            operations[1] = payment;
 
-            var externalReservation = MockRepository.GenerateStub<IOperation>();
-            externalReservation.Stub(x => x.OperationName).Return(OperationCode.ExternalReservation);
-            operations[2] = externalReservation;
+            var reservation = MockRepository.GenerateStub<IOperation>();
+            reservation.Stub(x => x.OperationName).Return(OperationCode.Reservation);
+            operations[2] = reservation;
 
             var priceValidator = MockRepository.GenerateStub<IOperation>();
             priceValidator.Stub(x => x.OperationName).Return(OperationCode.RecheckingPrice);

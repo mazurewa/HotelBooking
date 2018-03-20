@@ -33,8 +33,8 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
             };
@@ -51,7 +51,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
+                        OperationCode.Payment,
                         OperationCode.SendingEmail
                     }
             };
@@ -68,8 +68,8 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
             };
@@ -86,16 +86,16 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
             };
             var orderOperations = sut.GetOrderedOperations(hotel);
 
             orderOperations[0].OperationName.Should().Equals(OperationCode.RecheckingPrice);
-            orderOperations[1].OperationName.Should().Equals(OperationCode.ExternalPayment);
-            orderOperations[2].OperationName.Should().Equals(OperationCode.ExternalReservation);
+            orderOperations[1].OperationName.Should().Equals(OperationCode.Payment);
+            orderOperations[2].OperationName.Should().Equals(OperationCode.Reservation);
             orderOperations[3].OperationName.Should().Equals(OperationCode.SendingEmail);
         }
 
@@ -107,8 +107,8 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation
+                        OperationCode.Payment,
+                        OperationCode.Reservation
                     }
             };
             var orderOperations = sut.GetOrderedOperations(hotel);

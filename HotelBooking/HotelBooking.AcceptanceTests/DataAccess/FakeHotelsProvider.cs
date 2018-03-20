@@ -18,8 +18,8 @@ namespace HotelBooking.AcceptanceTests.DataAccess
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
                 },
@@ -38,9 +38,9 @@ namespace HotelBooking.AcceptanceTests.DataAccess
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
+                        OperationCode.Payment,
                         OperationCode.SendingEmail,
-                        OperationCode.ExternalReservation
+                        OperationCode.Reservation
                     }
                 },
                 new Hotel
@@ -48,9 +48,9 @@ namespace HotelBooking.AcceptanceTests.DataAccess
                     HotelId = "0011",
                     OperationOrder = new List<string>
                     {
-                        OperationCode.ExternalReservation,
+                        OperationCode.Reservation,
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
+                        OperationCode.Payment,
                         OperationCode.SendingEmail
                     }
                 }

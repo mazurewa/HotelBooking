@@ -1,5 +1,5 @@
 ﻿using HotelBooking.Domain.Models;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using System;
 using HotelBooking.Domain.Enums;
 
@@ -7,9 +7,9 @@ namespace HotelBooking.App.Operations
 {
     public class EmailSender : OperationBase
     {
-        private ExternalEmailSystem _emailSender;
+        private EmailSystem _emailSender;
 
-        public EmailSender(ExternalEmailSystem emailSender)
+        public EmailSender(EmailSystem emailSender)
         {
             _emailSender = emailSender;
         }

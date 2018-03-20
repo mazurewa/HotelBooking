@@ -16,8 +16,8 @@ namespace HotelBooking.Domain.DataAccess
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
                 },
@@ -27,9 +27,9 @@ namespace HotelBooking.Domain.DataAccess
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail,
-                        OperationCode.ExternalPayment
+                        OperationCode.Payment
                     }
                 },
                 new Hotel
@@ -38,8 +38,8 @@ namespace HotelBooking.Domain.DataAccess
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation
+                        OperationCode.Payment,
+                        OperationCode.Reservation
                     }
                 },
                 new Hotel
@@ -47,9 +47,9 @@ namespace HotelBooking.Domain.DataAccess
                     HotelId = "004",
                     OperationOrder = new List<string>
                     {
-                        OperationCode.ExternalReservation,
+                        OperationCode.Reservation,
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
+                        OperationCode.Payment,
                         OperationCode.SendingEmail
                     }
                 }

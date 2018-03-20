@@ -1,5 +1,5 @@
 ﻿using HotelBooking.Domain.Models;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using System;
 using HotelBooking.Domain.Enums;
 
@@ -7,15 +7,15 @@ namespace HotelBooking.App.Operations
 {
     public class PaymentSystemManager : OperationBase
     {
-        private ExternalPaymentSystem _paymentSystem;
+        private PaymentSystem _paymentSystem;
 
-        public PaymentSystemManager(ExternalPaymentSystem paymentSystem)
+        public PaymentSystemManager(PaymentSystem paymentSystem)
         {
             _paymentSystem = paymentSystem;
         }
 
         public override bool IsRequiredToSucceed => true;
-        public override string OperationName => OperationCode.ExternalPayment;
+        public override string OperationName => OperationCode.Payment;
         public override Func<Reservation, bool> Execute => Pay;
 
         private bool Pay(Reservation reservation)

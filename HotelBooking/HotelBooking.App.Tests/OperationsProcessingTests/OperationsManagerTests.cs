@@ -2,7 +2,7 @@
 using HotelBooking.App.DataObjects;
 using HotelBooking.App.Enums;
 using HotelBooking.App.Operations;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using HotelBooking.App.OperationsProcessing;
 using HotelBooking.Domain.Models;
 using NUnit.Framework;
@@ -16,14 +16,14 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
     {
         OperationsManager sut;
         IOperationsProvider operationsProvider;
-        ExternalEmailSystem emailSystem;
+        EmailSystem emailSystem;
         Reservation reservation;
 
         [SetUp]
         public void SetUp()
         {
             operationsProvider = MockRepository.GenerateMock<IOperationsProvider>();
-            emailSystem = MockRepository.GenerateMock<ExternalEmailSystem>();
+            emailSystem = MockRepository.GenerateMock<EmailSystem>();
             reservation = new Reservation { Hotel = new Hotel() };
             sut = new OperationsManager(operationsProvider, emailSystem);
         }

@@ -1,5 +1,5 @@
 ﻿using HotelBooking.App.Operations;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using HotelBooking.Domain.Models;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -10,23 +10,23 @@ namespace HotelBooking.App.Tests.OperationsTests
     public class PaymentSystemManagerTests
     {
         PaymentSystemManager sut;
-        ExternalPaymentSystem externalPaymentSystem;
+        PaymentSystem paymentSystem;
 
         [SetUp]
         public void SetUp()
         {
-            externalPaymentSystem = MockRepository.GenerateMock<ExternalPaymentSystem>();
-            sut = new PaymentSystemManager(externalPaymentSystem);
+            paymentSystem = MockRepository.GenerateMock<PaymentSystem>();
+            sut = new PaymentSystemManager(paymentSystem);
         }
 
         [Test]
-        public void Should_CallExternalEmailSystem_When_Executing()
+        public void Should_CallEmailSystem_When_Executing()
         {
             var reservation = new Reservation();
-            externalPaymentSystem.Expect(x => x.Pay(reservation)).Return(true);
+            paymentSystem.Expect(x => x.Pay(reservation)).Return(true);
             sut.Execute(reservation);
 
-            externalPaymentSystem.VerifyAllExpectations();
+            paymentSystem.VerifyAllExpectations();
         }
     }
 }

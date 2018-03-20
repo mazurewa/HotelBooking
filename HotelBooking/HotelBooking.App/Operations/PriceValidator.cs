@@ -1,5 +1,5 @@
 ﻿using HotelBooking.Domain.Models;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using System;
 using HotelBooking.Domain.Enums;
 
@@ -7,9 +7,9 @@ namespace HotelBooking.App.Operations
 {
     public class PriceValidator : OperationBase
     {
-        private ExternalHotelPriceValidator _hotelPriceChecker;
+        private HotelPriceValidator _hotelPriceChecker;
 
-        public PriceValidator(ExternalHotelPriceValidator hotelPriceChecker)
+        public PriceValidator(HotelPriceValidator hotelPriceChecker)
         {
             _hotelPriceChecker = hotelPriceChecker;
         }

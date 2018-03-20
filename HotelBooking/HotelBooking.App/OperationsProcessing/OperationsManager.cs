@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using HotelBooking.Domain.Models;
-using HotelBooking.App.Operations.ExternalSystems;
+using HotelBooking.App.Operations.Services;
 using HotelBooking.App.DataObjects;
 using HotelBooking.App.Enums;
 
@@ -10,9 +10,9 @@ namespace HotelBooking.App.OperationsProcessing
     public class OperationsManager : IOperationsManager
     {
         private IOperationsProvider _operationsProvider;
-        private ExternalEmailSystem _emailSender;
+        private EmailSystem _emailSender;
 
-        public OperationsManager(IOperationsProvider operationsProvider, ExternalEmailSystem emailSender)
+        public OperationsManager(IOperationsProvider operationsProvider, EmailSystem emailSender)
         {
             _operationsProvider = operationsProvider;
             _emailSender = emailSender;

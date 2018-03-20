@@ -27,8 +27,8 @@ namespace HotelBooking.Domain.Tests.DataAccessTests
                     OperationOrder = new List<string>
                     {
                         OperationCode.RecheckingPrice,
-                        OperationCode.ExternalPayment,
-                        OperationCode.ExternalReservation,
+                        OperationCode.Payment,
+                        OperationCode.Reservation,
                         OperationCode.SendingEmail
                     }
                 }
