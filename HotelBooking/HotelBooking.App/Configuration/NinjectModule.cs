@@ -19,14 +19,14 @@ namespace HotelBooking.App.Configuration
             Bind<IHotelsRepository>().To<HotelRepository>();
 
             Bind<IOperation>().To<EmailSender>();
-            Bind<IOperation>().To<ExternalPaymentSystemManager>();
-            Bind<IOperation>().To<ExternalReservationSystemManager>();
+            Bind<IOperation>().To<PaymentSystemManager>();
+            Bind<IOperation>().To<ReservationSystemManager>();
             Bind<IOperation>().To<PriceValidator>();
 
-            Bind<IExternalEmailSystem>().To<ExternalEmailSystem>();
-            Bind<IExternalHotelPriceValidator>().To<ExternalHotelPriceValidator>();
-            Bind<IExternalHotelReservationSystem>().To<ExternalHotelReservationSystem>();
-            Bind<IExternalPaymentSystem>().To<ExternalPaymentSystem>();
+            Bind<ExternalEmailSystem>().ToSelf();
+            Bind<ExternalHotelPriceValidator>().ToSelf();
+            Bind<ExternalHotelReservationSystem>().ToSelf();
+            Bind<ExternalPaymentSystem>().ToSelf();
         }
     }
 }

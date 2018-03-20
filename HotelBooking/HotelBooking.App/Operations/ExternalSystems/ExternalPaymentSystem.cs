@@ -3,9 +3,9 @@ using HotelBooking.Domain.Models;
 
 namespace HotelBooking.App.Operations.ExternalSystems
 {
-    public class ExternalPaymentSystem : IExternalPaymentSystem
+    public class ExternalPaymentSystem
     {
-        public bool Pay(Reservation reservation)
+        public virtual bool Pay(Reservation reservation)
         {
             return true;
         }

@@ -10,9 +10,9 @@ namespace HotelBooking.App.OperationsProcessing
     public class OperationsManager : IOperationsManager
     {
         private IOperationsProvider _operationsProvider;
-        private IExternalEmailSystem _emailSender;
+        private ExternalEmailSystem _emailSender;
 
-        public OperationsManager(IOperationsProvider operationsProvider, IExternalEmailSystem emailSender)
+        public OperationsManager(IOperationsProvider operationsProvider, ExternalEmailSystem emailSender)
         {
             _operationsProvider = operationsProvider;
             _emailSender = emailSender;

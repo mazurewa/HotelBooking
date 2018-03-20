@@ -3,15 +3,15 @@ using System;
 
 namespace HotelBooking.App.Operations.ExternalSystems
 {
-    public class ExternalEmailSystem : IExternalEmailSystem
+    public class ExternalEmailSystem
     {
-        public bool SendConfirmationEmail(Reservation reservation)
+        public virtual bool SendConfirmationEmail(Reservation reservation)
         {
             Console.WriteLine($"Confirmation email sent");
             return true;
         }
 
-        public bool SendRejectionEmail(Reservation reservation)
+        public virtual bool SendRejectionEmail(Reservation reservation)
         {
             Console.WriteLine($"Rejection email sent");
             return true;

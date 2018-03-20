@@ -10,22 +10,23 @@ namespace HotelBooking.App.Tests.OperationsTests
     public class EmailSenderTests
     {
         EmailSender sut;
-        IExternalEmailSystem externalEmailSystem;
+        ExternalEmailSystem externalEmailSystem;
 
         [SetUp]
         public void SetUp()
         {
-            externalEmailSystem = MockRepository.GenerateStub<IExternalEmailSystem>();
+            externalEmailSystem = MockRepository.GenerateMock<ExternalEmailSystem>();
             sut = new EmailSender(externalEmailSystem);
         }
 
         [Test]
-        public void Should_CallExternalEmailSystem_When_Executing()
+        public void Should_CallExternalEmailSystem()
         {
             var reservation = new Reservation();
+            externalEmailSystem.Expect(x => x.SendConfirmationEmail(reservation)).Return(true);
             sut.Execute(reservation);
 
-            externalEmailSystem.AssertWasCalled(x => x.SendConfirmationEmail(reservation));
+            externalEmailSystem.VerifyAllExpectations();
         }
     }
 }

@@ -61,8 +61,8 @@
   <ItemGroup>
     <Compile Include="OperationsProcessingTests\OperationsManagerTests.cs" />
     <Compile Include="OperationsTests\EmailSenderTests.cs" />
-    <Compile Include="OperationsTests\ExternalPaymentSystemManagerTests.cs" />
-    <Compile Include="OperationsTests\ExternalReservationSystemManagerTests.cs" />
+    <Compile Include="OperationsTests\PaymentSystemManagerTests.cs" />
+    <Compile Include="OperationsTests\ReservationSystemManagerTests.cs" />
     <Compile Include="OperationsTests\OperationBaseTests.cs" />
     <Compile Include="OperationsTests\PriceValidatorTests.cs" />
     <Compile Include="ReservationProcessingTests\InputValidatorTests.cs" />

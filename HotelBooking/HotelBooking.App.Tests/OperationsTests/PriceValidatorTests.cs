@@ -10,12 +10,12 @@ namespace HotelBooking.App.Tests.OperationsTests
     public class PriceValidatorTests
     {
         PriceValidator sut;
-        IExternalHotelPriceValidator externalHotelPriceValidator;
+        ExternalHotelPriceValidator externalHotelPriceValidator;
 
         [SetUp]
         public void SetUp()
         {
-            externalHotelPriceValidator = MockRepository.GenerateStub<IExternalHotelPriceValidator>();
+            externalHotelPriceValidator = MockRepository.GenerateMock<ExternalHotelPriceValidator>();
             sut = new PriceValidator(externalHotelPriceValidator);
         }
 
@@ -23,9 +23,10 @@ namespace HotelBooking.App.Tests.OperationsTests
         public void Should_CallExternalEmailSystem_When_Executing()
         {
             var reservation = new Reservation();
+            externalHotelPriceValidator.Expect(x => x.ValidatePrice(reservation)).Return(true);
             sut.Execute(reservation);
 
-            externalHotelPriceValidator.AssertWasCalled(x => x.ValidatePrice(reservation));
+            externalHotelPriceValidator.VerifyAllExpectations();
         }
     }
 }

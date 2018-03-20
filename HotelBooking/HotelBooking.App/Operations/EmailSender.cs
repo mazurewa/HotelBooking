@@ -7,9 +7,9 @@ namespace HotelBooking.App.Operations
 {
     public class EmailSender : OperationBase
     {
-        private IExternalEmailSystem _emailSender;
+        private ExternalEmailSystem _emailSender;
 
-        public EmailSender(IExternalEmailSystem emailSender)
+        public EmailSender(ExternalEmailSystem emailSender)
         {
             _emailSender = emailSender;
         }

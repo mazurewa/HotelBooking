@@ -7,9 +7,9 @@ namespace HotelBooking.App.Operations
 {
     public class PriceValidator : OperationBase
     {
-        private IExternalHotelPriceValidator _hotelPriceChecker;
+        private ExternalHotelPriceValidator _hotelPriceChecker;
 
-        public PriceValidator(IExternalHotelPriceValidator hotelPriceChecker)
+        public PriceValidator(ExternalHotelPriceValidator hotelPriceChecker)
         {
             _hotelPriceChecker = hotelPriceChecker;
         }

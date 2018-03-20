@@ -16,14 +16,14 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
     {
         OperationsManager sut;
         IOperationsProvider operationsProvider;
-        IExternalEmailSystem emailSystem;
+        ExternalEmailSystem emailSystem;
         Reservation reservation;
 
         [SetUp]
         public void SetUp()
         {
             operationsProvider = MockRepository.GenerateMock<IOperationsProvider>();
-            emailSystem = MockRepository.GenerateMock<IExternalEmailSystem>();
+            emailSystem = MockRepository.GenerateMock<ExternalEmailSystem>();
             reservation = new Reservation { Hotel = new Hotel() };
             sut = new OperationsManager(operationsProvider, emailSystem);
         }
@@ -145,10 +145,13 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
             operationsProvider.Stub(x => x.ContainsAllRequiredOperations(operationsToRun)).Return(true);
 
+            operation1.Expect(x => x.Process(Arg<Reservation>.Is.Anything, Arg<BookingResult>.Is.Anything));
+            emailSystem.Expect(x => x.SendRejectionEmail(reservation)).Return(true);
+
             var bookingResult = sut.ProcessOperations(reservation);
 
-            operation1.AssertWasCalled(x => x.Process(reservation, bookingResult));
-            emailSystem.AssertWasCalled(x => x.SendRejectionEmail(reservation));
+            emailSystem.VerifyAllExpectations();
+            operation1.VerifyAllExpectations();
         }
 
         [Test]
@@ -166,9 +169,10 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
             operationsProvider.Stub(x => x.ContainsAllRequiredOperations(operationsToRun)).Return(true);
 
+            emailSystem.Expect(x => x.SendRejectionEmail(reservation)).Repeat.Never();
             var bookingResult = sut.ProcessOperations(reservation);
 
-            emailSystem.AssertWasNotCalled(x => x.SendRejectionEmail(reservation));
+            emailSystem.VerifyAllExpectations();
         }
 
         [Test]
