@@ -25,13 +25,15 @@ namespace HotelBooking.App.OperationsProcessing
 
             foreach (var operation in orderedOperations)
             {
-                operation.Process(reservation, bookingResult);
+                var operationResult = operation.Process(reservation, bookingResult);
+                bookingResult.OperationResults.Add(operationResult);
 
-                if (operation.OperationResult.ShouldAbortBookingProcess)
+                if (operationResult.ShouldAbortBookingProcess)
                 {
                     AbortProcess(reservation, operation.OperationName);
                     break;
                 }
+
             }
 
             return bookingResult;

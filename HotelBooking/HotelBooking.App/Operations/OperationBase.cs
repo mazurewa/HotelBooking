@@ -11,26 +11,24 @@ namespace HotelBooking.App.Operations
         public abstract string OperationName { get; }
         public abstract Func<Reservation, bool> Execute { get; }
 
-        public OperationResult OperationResult { get; set; }
-
-        public void Process(Reservation reservation, BookingResult bookingResult)
+        public OperationResult Process(Reservation reservation, BookingResult bookingResult)
         {
             var executionResult = Execute(reservation) ? Result.Success : Result.Failure;
 
-            OperationResult = new OperationResult
+            var operationResult =  new OperationResult
             {
                 ExecutionResult = executionResult,
                 OperationName = OperationName,
                 ShouldAbortBookingProcess = IsRequiredToSucceed && executionResult == Result.Failure
             };           
-            bookingResult.OperationResults.Add(OperationResult);
+            WriteOperationResultToConsole(operationResult);
 
-            WriteOperationResultToConsole();            
+            return operationResult;
         }
 
-        private void WriteOperationResultToConsole()
+        private void WriteOperationResultToConsole(OperationResult operationResult)
         {
-            Console.WriteLine(string.Format($"{OperationName} - Result: {OperationResult.ExecutionResult}, Required: {IsRequiredToSucceed}"));
+            Console.WriteLine(string.Format($"{OperationName} - Result: {operationResult.ExecutionResult}, Required: {IsRequiredToSucceed}"));
         }
     }
 }
