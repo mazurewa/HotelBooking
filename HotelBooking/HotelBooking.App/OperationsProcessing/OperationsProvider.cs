@@ -27,6 +27,12 @@ namespace HotelBooking.App.OperationsProcessing
                     orderedOperations.Add(selectedOperation);
                 }
             }
+
+            if (!ContainsAllRequiredOperations(orderedOperations))
+            {
+                return new List<IOperation>();
+            }
+
             return orderedOperations;
         }
 

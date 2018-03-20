@@ -10,15 +10,22 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
     public class OperationEqualityComparerTests
     {
         OperationEqualityComparer sut;
+        IOperation operationA;
+        IOperation operationB;
+
+        [SetUp]
+        public void SetUp()
+        {
+            operationA = MockRepository.GenerateStub<IOperation>();
+            operationA.Stub(x => x.OperationName).Return("name");
+            operationB = MockRepository.GenerateStub<IOperation>();
+            sut = new OperationEqualityComparer();
+        }
 
         [Test]
         public void Should_BeEqual_When_OperationsNamesEqual()
-        {
-            IOperation operationA = MockRepository.GenerateStub<IOperation>();
-            operationA.Stub(x => x.OperationName).Return("name");
-            IOperation operationB = MockRepository.GenerateStub<IOperation>();
+        {           
             operationB.Stub(x => x.OperationName).Return("name");
-            sut = new OperationEqualityComparer();
 
             bool equal = sut.Equals(operationA, operationB);
 
@@ -28,13 +35,9 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_BeEqual_When_OperationsNamesEqualAndOperationResultsDifferent()
         {
-            IOperation operationA = MockRepository.GenerateStub<IOperation>();
-            operationA.Stub(x => x.OperationName).Return("name");
             operationA.OperationResult = new OperationResult() { ShouldAbortBookingProcess = true };
-            IOperation operationB = MockRepository.GenerateStub<IOperation>();
             operationB.Stub(x => x.OperationName).Return("name");
             operationB.OperationResult = new OperationResult() { ShouldAbortBookingProcess = false };
-            sut = new OperationEqualityComparer();
 
             bool equal = sut.Equals(operationA, operationB);
 
@@ -43,12 +46,8 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
 
         [Test]
         public void Should_NotBeEqual_When_OperationsNamesAreDifferent()
-        {
-            IOperation operationA = MockRepository.GenerateStub<IOperation>();
-            operationA.Stub(x => x.OperationName).Return("name");
-            IOperation operationB = MockRepository.GenerateStub<IOperation>();
+        {          
             operationB.Stub(x => x.OperationName).Return("otherName");
-            sut = new OperationEqualityComparer();
 
             bool equal = sut.Equals(operationA, operationB);
 

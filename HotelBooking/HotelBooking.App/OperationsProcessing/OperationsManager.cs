@@ -23,21 +23,23 @@ namespace HotelBooking.App.OperationsProcessing
             var orderedOperations = _operationsProvider.GetOrderedOperations(reservation.Hotel);
             var bookingResult = new BookingResult();
 
-            if (_operationsProvider.ContainsAllRequiredOperations(orderedOperations))
+            if (orderedOperations.Count == 0)
             {
-                foreach (var operation in orderedOperations)
-                {
-                    operation.Process(reservation, bookingResult);
-
-                    if (operation.OperationResult.ShouldAbortBookingProcess)
-                    {
-                        AbortProcess(reservation, operation.OperationName);
-                        break;
-                    }
-                }
-
-                DeduceOverallBookingResult(bookingResult);
+                return bookingResult;
             }
+
+            foreach (var operation in orderedOperations)
+            {
+                operation.Process(reservation, bookingResult);
+
+                if (operation.OperationResult.ShouldAbortBookingProcess)
+                {
+                    AbortProcess(reservation, operation.OperationName);
+                    break;
+                }
+            }
+
+            DeduceOverallBookingResult(bookingResult);
             return bookingResult;
         }
 

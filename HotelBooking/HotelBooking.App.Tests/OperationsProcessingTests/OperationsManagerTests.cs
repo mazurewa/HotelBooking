@@ -29,7 +29,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         }
 
         [Test]
-        public void Should_GetOrderedOperationsForHotel_When_Called()
+        public void Should_GetOrderedOperationsForHotel()
         {
             operationsProvider.Expect(x => x.GetOrderedOperations(reservation.Hotel));
 
@@ -93,7 +93,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         }
 
         [Test]
-        public void Should_ProcessTwoOperations_When_TwoOperationsSpecifiedByHotelAndFirstNotAborted()
+        public void Should_NotStopProcessing_When_NoOperationsFailed()
         {
             var operation1 = MockRepository.GenerateMock<IOperation>();
             operation1.Stub(x => x.OperationResult).Return(new OperationResult { ShouldAbortBookingProcess = false });
@@ -111,7 +111,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         }
 
         [Test]
-        public void Should_ProcessThreeOperations_When_FourOperationsSpecifiedByHotelAndProcessAbortedOnThird()
+        public void Should_StopProcessing_When_OperationFailedWithAbort()
         {
             var operation1 = MockRepository.GenerateMock<IOperation>();
             operation1.Stub(x => x.OperationResult).Return(new OperationResult { ShouldAbortBookingProcess = false });
@@ -205,46 +205,6 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
             var bookingResult = sut.ProcessOperations(reservation);
 
             bookingResult.OverallResult.Should().Equals(Result.Success);
-        }
-
-        [Test]
-        public void Should_ReturnTwoOperationsResults_When_ProcessAbortedOnSecond()
-        {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.OperationResult).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            operation1.Stub(x => x.Process(Arg<Reservation>.Is.Anything, Arg<BookingResult>.Is.Anything))
-                .WhenCalled(y =>
-                {
-                    var tempBookingResult = (BookingResult)y.Arguments[1];
-                    tempBookingResult.OperationResults.Add(operation1.OperationResult);
-                });
-            var operation2 = MockRepository.GenerateMock<IOperation>();
-            operation2.Stub(x => x.OperationResult).Return(new OperationResult { ShouldAbortBookingProcess = true });
-            operation2.Stub(x => x.Process(Arg<Reservation>.Is.Anything, Arg<BookingResult>.Is.Anything))
-                .WhenCalled(y =>
-                {
-                    var tempBookingResult = (BookingResult)y.Arguments[1];
-                    tempBookingResult.OperationResults.Add(operation2.OperationResult);
-                });
-            var operation3 = MockRepository.GenerateMock<IOperation>();
-            operation3.Stub(x => x.OperationResult).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            operation3.Stub(x => x.Process(Arg<Reservation>.Is.Anything, Arg<BookingResult>.Is.Anything))
-                .WhenCalled(y =>
-                {
-                    var tempBookingResult = (BookingResult)y.Arguments[1];
-                    tempBookingResult.OperationResults.Add(operation3.OperationResult);
-                });
-
-            var operationsToRun = new List<IOperation> { operation1, operation2, operation3};
-
-            operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
-            operationsProvider.Stub(x => x.ContainsAllRequiredOperations(operationsToRun)).Return(true);
-
-            var bookingResult = sut.ProcessOperations(reservation);
-
-            bookingResult.OperationResults.Count.Should().Be(2);
-            bookingResult.OperationResults[0].ShouldAbortBookingProcess.Equals(false);
-            bookingResult.OperationResults[1].ShouldAbortBookingProcess.Equals(true);
         }
     }
 }
