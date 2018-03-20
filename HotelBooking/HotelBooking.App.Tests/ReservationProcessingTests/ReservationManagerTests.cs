@@ -54,7 +54,7 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
         public void Should_TryCreateReservation_When_InputsValid()
         {
             inputsValidator.Stub(x => x.ValidateInputs(Arg<string[]>.Is.Anything, Arg<Options>.Is.Anything)).Return(true);
-            var bookingResult = new BookingResult { OverallResult = Result.Success };
+            var bookingResult = MockRepository.GenerateStub<BookingResult>();
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);
  
             reservationFactory.Expect(x => x.CreateReservation(Arg<Options>.Is.Anything));
@@ -68,7 +68,7 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
         {
             inputsValidator.Stub(x => x.ValidateInputs(Arg<string[]>.Is.Anything, Arg<Options>.Is.Anything)).Return(true);
             reservationFactory.Stub(x => x.CreateReservation(Arg<Options>.Is.Anything)).Return(new Reservation());
-            var bookingResult = new BookingResult { OverallResult = Result.Success };
+            var bookingResult = MockRepository.GenerateStub<BookingResult>();
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);
 
             operationsManager.Expect(x => x.ProcessOperations(Arg<Reservation>.Is.Anything));
@@ -83,7 +83,8 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
         {
             inputsValidator.Stub(x => x.ValidateInputs(Arg<string[]>.Is.Anything, Arg<Options>.Is.Anything)).Return(true);
             reservationFactory.Stub(x => x.CreateReservation(Arg<Options>.Is.Anything)).Return(new Reservation());
-            var bookingResult = new BookingResult { OverallResult = Result.Success };
+            var bookingResult = MockRepository.GenerateStub<BookingResult>();
+            bookingResult.Stub(x => x.OverallResult).Return(Result.Success);
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);
 
             var finalBookingResult = sut.ProcessReservation(new string[1]);
@@ -96,7 +97,8 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
         {
             inputsValidator.Stub(x => x.ValidateInputs(Arg<string[]>.Is.Anything, Arg<Options>.Is.Anything)).Return(true);
             reservationFactory.Stub(x => x.CreateReservation(Arg<Options>.Is.Anything)).Return(new Reservation());
-            var bookingResult = new BookingResult { OverallResult = Result.Failure };
+            var bookingResult = MockRepository.GenerateStub<BookingResult>();
+            bookingResult.Stub(x => x.OverallResult).Return(Result.Failure);
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);
 
             var finalBookingResult = sut.ProcessReservation(new string[1]);

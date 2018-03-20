@@ -74,7 +74,7 @@ namespace HotelBooking.AcceptanceTests.Steps
         [Then(@"Booking result has success overall result")]
         public void ThenBookingResultHasSuccessOverallResult()
         {
-            bookingResult.OverallResult = Result.Success;
+            bookingResult.OverallResult.Should().Be(Result.Success);
         }
 
         [Then(@"Booking result includes no operations results")]
@@ -86,7 +86,7 @@ namespace HotelBooking.AcceptanceTests.Steps
         [Then(@"Booking result has failure overall result")]
         public void ThenBookingResultHasFailureOverallResult()
         {
-            bookingResult.OverallResult = Result.Failure;
+            bookingResult.OverallResult.Should().Be(Result.Failure);
         }
     }
 }

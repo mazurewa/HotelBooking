@@ -23,11 +23,6 @@ namespace HotelBooking.App.OperationsProcessing
             var orderedOperations = _operationsProvider.GetOrderedOperations(reservation.Hotel);
             var bookingResult = new BookingResult();
 
-            if (orderedOperations.Count == 0)
-            {
-                return bookingResult;
-            }
-
             foreach (var operation in orderedOperations)
             {
                 operation.Process(reservation, bookingResult);
@@ -39,14 +34,7 @@ namespace HotelBooking.App.OperationsProcessing
                 }
             }
 
-            DeduceOverallBookingResult(bookingResult);
             return bookingResult;
-        }
-
-        private void DeduceOverallBookingResult(BookingResult bookingResult)
-        {
-            var hasAnyRequiredOperationFailed = bookingResult.OperationResults.Any(x => x.ShouldAbortBookingProcess);
-            bookingResult.OverallResult = hasAnyRequiredOperationFailed ? Result.Failure : Result.Success;
         }
 
         private void AbortProcess(Reservation reservation, string operationName)
