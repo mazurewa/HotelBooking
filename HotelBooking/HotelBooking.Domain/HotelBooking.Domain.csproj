@@ -30,8 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.0.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.1.0\lib\net46\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,14 +54,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\NinjectModule.cs" />
     <Compile Include="DataAccess\HotelRepository.cs" />
     <Compile Include="DataAccess\HotelsProvider.cs" />
     <Compile Include="DataAccess\IHotelRepository.cs" />
     <Compile Include="DataAccess\IHotelsProvider.cs" />
+    <Compile Include="DataObjects\BookingResult.cs" />
+    <Compile Include="DataObjects\OperationResult.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\HotelConfiguration.cs" />
+    <Compile Include="Models\OperationConfiguration.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="OperationsProcessing\AllOperationsProvider.cs" />
+    <Compile Include="OperationsProcessing\ExecutionResult.cs" />
+    <Compile Include="OperationsProcessing\IAllOperationsProvider.cs" />
+    <Compile Include="OperationsProcessing\IOperationsManager.cs" />
+    <Compile Include="OperationsProcessing\IOperationsProvider.cs" />
+    <Compile Include="OperationsProcessing\OperationsManager.cs" />
+    <Compile Include="OperationsProcessing\OperationsProvider.cs" />
+    <Compile Include="OperationsProcessing\Result.cs" />
+    <Compile Include="Operations\IOperation.cs" />
+    <Compile Include="Operations\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\OperationCode.cs" />
+    <Compile Include="ReservationProcessing\IInputValidator.cs" />
+    <Compile Include="ReservationProcessing\InputValidator.cs" />
+    <Compile Include="ReservationProcessing\IReservationFactory.cs" />
+    <Compile Include="ReservationProcessing\IReservationManager.cs" />
+    <Compile Include="ReservationProcessing\Options.cs" />
+    <Compile Include="ReservationProcessing\ProcessInitiator.cs" />
+    <Compile Include="ReservationProcessing\ReservationFactory.cs" />
+    <Compile Include="ReservationProcessing\ReservationManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

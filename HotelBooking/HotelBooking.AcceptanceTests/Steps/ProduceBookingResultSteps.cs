@@ -1,13 +1,12 @@
 ﻿using FluentAssertions;
 using HotelBooking.AcceptanceTests.Configuration;
 using HotelBooking.AcceptanceTests.DataAccess;
-using HotelBooking.App.Configuration;
-using HotelBooking.App.DataObjects;
-using HotelBooking.App.Enums;
-using HotelBooking.App.ReservationProcessing;
+using HotelBooking.Domain.Configuration;
 using HotelBooking.Domain.DataAccess;
+using HotelBooking.Domain.DataObjects;
+using HotelBooking.Domain.Enums;
+using HotelBooking.Domain.ReservationProcessing;
 using Ninject;
-using System;
 using TechTalk.SpecFlow;
 
 namespace HotelBooking.AcceptanceTests.Steps
@@ -62,7 +61,7 @@ namespace HotelBooking.AcceptanceTests.Steps
             arguments = new string[] { "-h", hotelId , "-d", "01/08/2008 14:50:50.42", "-c", "123.34",
             "-r", "1111 2222 3333 4444", "-e", emailAddress };
             hotelsProvider = new FakeHotelsProvider();
-            bookingResult = reservationManager.ProcessReservation(arguments);
+            bookingResult = reservationManager.ManageReservation(arguments);
         }
 
         [Then(@"Booking result includes all opeartions results")]

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.Domain", "Hote
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.App", "HotelBooking.App\HotelBooking.App.csproj", "{BFD6DC49-6263-4621-AE9D-5B3A7A9C9273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.App.Tests", "HotelBooking.App.Tests\HotelBooking.App.Tests.csproj", "{FB8A722C-4390-47CB-8348-10E8FE5E60D4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.Domain.Tests", "HotelBooking.Domain.Tests\HotelBooking.Domain.Tests.csproj", "{4106E7BE-2607-4022-B459-B00EBAC93C2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.AcceptanceTests", "HotelBooking.AcceptanceTests\HotelBooking.AcceptanceTests.csproj", "{0CC262D2-451A-4F32-ADC0-195935156C4F}"
@@ -27,10 +25,6 @@ Global
 		{BFD6DC49-6263-4621-AE9D-5B3A7A9C9273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD6DC49-6263-4621-AE9D-5B3A7A9C9273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD6DC49-6263-4621-AE9D-5B3A7A9C9273}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB8A722C-4390-47CB-8348-10E8FE5E60D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB8A722C-4390-47CB-8348-10E8FE5E60D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB8A722C-4390-47CB-8348-10E8FE5E60D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB8A722C-4390-47CB-8348-10E8FE5E60D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4106E7BE-2607-4022-B459-B00EBAC93C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4106E7BE-2607-4022-B459-B00EBAC93C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4106E7BE-2607-4022-B459-B00EBAC93C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU

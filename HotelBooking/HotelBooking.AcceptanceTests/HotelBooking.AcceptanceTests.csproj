@@ -62,19 +62,46 @@
   <ItemGroup>
     <Compile Include="Configuration\TestNinjectModule.cs" />
     <Compile Include="DataAccess\FakeHotelsProvider.cs" />
+    <Compile Include="Features\BookingHotelRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingHotelRoom.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\PaymentFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentFeature.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ProduceBookingResult.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduceBookingResult.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SendingEmail.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SendingEmail.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\ProduceBookingResultSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\BookingHotelRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BookingHotelRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PaymentFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PaymentFeature.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\ProduceBookingResult.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProduceBookingResult.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\SendingEmail.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SendingEmail.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

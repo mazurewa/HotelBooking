@@ -59,19 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OperationsProcessingTests\OperationsManagerTests.cs" />
-    <Compile Include="OperationsTests\EmailSenderTests.cs" />
-    <Compile Include="OperationsTests\PaymentSystemManagerTests.cs" />
-    <Compile Include="OperationsTests\ReservationSystemManagerTests.cs" />
-    <Compile Include="OperationsTests\OperationBaseTests.cs" />
-    <Compile Include="OperationsTests\PriceValidatorTests.cs" />
-    <Compile Include="ReservationProcessingTests\InputValidatorTests.cs" />
-    <Compile Include="OperationsProcessingTests\OperationEqualityComparerTests.cs" />
-    <Compile Include="OperationsProcessingTests\OperationsProviderTests.cs" />
-    <Compile Include="ReservationProcessingTests\ReservationFactoryTests.cs" />
-    <Compile Include="ReservationProcessingTests\ReservationManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

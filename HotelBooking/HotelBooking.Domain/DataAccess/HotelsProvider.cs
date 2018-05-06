@@ -13,44 +13,56 @@ namespace HotelBooking.Domain.DataAccess
                 new Hotel
                 {
                     HotelId = "001",
-                    OperationOrder = new List<string>
+                    HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.Reservation,
-                        OperationCode.SendingEmail
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                        }
                     }
                 },
                 new Hotel
                 {
                     HotelId = "002",
-                    OperationOrder = new List<string>
+                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Reservation,
-                        OperationCode.SendingEmail,
-                        OperationCode.Payment
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: false),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 },
                 new Hotel
                 {
                     HotelId = "003",
-                    OperationOrder = new List<string>
+                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.Reservation
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 },
                 new Hotel
                 {
                     HotelId = "004",
-                    OperationOrder = new List<string>
+                    HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.Reservation,
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.SendingEmail
+                       OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 }
             };

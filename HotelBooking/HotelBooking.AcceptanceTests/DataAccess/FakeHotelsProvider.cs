@@ -2,7 +2,6 @@
 using HotelBooking.Domain.Enums;
 using HotelBooking.Domain.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace HotelBooking.AcceptanceTests.DataAccess
 {
@@ -14,44 +13,57 @@ namespace HotelBooking.AcceptanceTests.DataAccess
             {
                 new Hotel
                 {
-                    HotelId = "008",
-                    OperationOrder = new List<string>
+                    HotelId = "001",
+                    HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.Reservation,
-                        OperationCode.SendingEmail
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                        }
                     }
                 },
                 new Hotel
                 {
-                    HotelId = "009",
-                    OperationOrder = new List<string>
+                    HotelId = "002",
+                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.SendingEmail
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: false),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 },
                 new Hotel
                 {
-                    HotelId = "0010",
-                    OperationOrder = new List<string>
+                    HotelId = "003",
+                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.SendingEmail,
-                        OperationCode.Reservation
+                        OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 },
                 new Hotel
                 {
-                    HotelId = "0011",
-                    OperationOrder = new List<string>
+                    HotelId = "004",
+                    HotelConfiguration = new HotelConfiguration
                     {
-                        OperationCode.Reservation,
-                        OperationCode.RecheckingPrice,
-                        OperationCode.Payment,
-                        OperationCode.SendingEmail
+                       OperationOrder = new List<OperationConfiguration>
+                        {
+                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: true),
+                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                        }
                     }
                 }
             };
