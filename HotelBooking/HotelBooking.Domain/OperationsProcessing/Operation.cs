@@ -1,20 +1,16 @@
-﻿using HotelBooking.Domain.Models;
-using HotelBooking.Domain.DataObjects;
-using HotelBooking.Domain.Enums;
-using HotelBooking.Domain.OperationsProcessing;
+﻿using HotelBooking.Domain.DataObjects;
+using HotelBooking.Domain.Models;
 
-namespace HotelBooking.Domain.Operations
+namespace HotelBooking.Domain.OperationsProcessing
 {
     
-    public class Operation : IOperation
+    public class Operation
     {
         public string OperationName { get; }
-        bool IsRequiredToSucceed { get; }
 
-        public Operation(OperationConfiguration operationConfiguration)
+        public Operation(string operationName)
         {
-            OperationName = operationConfiguration.Name;
-            IsRequiredToSucceed = operationConfiguration.IsRequiredToSucceed;
+            OperationName = operationName;
         }
 
         public OperationResult Process(Reservation reservation)

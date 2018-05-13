@@ -26,12 +26,12 @@ namespace HotelBooking.Domain.Tests.DataAccessTests
                     HotelId = "0008",
                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationOrder = new List<OperationConfiguration>
+                        OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Payment,
+                            OperationCode.Reservation, 
+                            OperationCode.SendingEmail
                         }
                     }
                 }

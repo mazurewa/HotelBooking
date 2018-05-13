@@ -65,7 +65,7 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
                 CustomerEmail = "test@test.pl",
                 ReservationDate = new DateTime(2008, 1, 1, 14, 50, 40),
                 Hotel = hotel,
-                ReservationId = "333"
+                Id = "333"
             };
 
             var reservation = sut.CreateReservation(options);

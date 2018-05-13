@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Rhino.Mocks;
 using HotelBooking.Domain.Enums;
 using HotelBooking.Domain.OperationsProcessing;
-using HotelBooking.Domain.Operations;
 
 namespace HotelBooking.App.Tests.OperationsProcessingTests
 {
@@ -13,9 +12,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
     public class OperationsProviderTests
     {
         OperationsProvider sut;
-        Hotel hotel;
         private IAllOperationsProvider _allOperationsProvider;
-        IOperation[] bookingOperations;
 
         [Test]
         public void Should_ProvideAllOperationsSpecifiedByHotel_When_EachIncludedInAllOperations()
@@ -25,12 +22,12 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 HotelId = "001",
                 HotelConfiguration = new HotelConfiguration
                 {
-                    OperationOrder = new List<OperationConfiguration>
+                    OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Payment,
+                            OperationCode.Reservation, 
+                            OperationCode.SendingEmail
                         }
                 }
             };
@@ -60,12 +57,12 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 HotelId = "001",
                 HotelConfiguration = new HotelConfiguration
                 {
-                    OperationOrder = new List<OperationConfiguration>
+                    OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                            OperationCode.RecheckingPrice, 
+                            OperationCode.Payment, 
+                            OperationCode.Reservation, 
+                            OperationCode.SendingEmail
                         }
                 }
             };
@@ -95,12 +92,12 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 HotelId = "001",
                 HotelConfiguration = new HotelConfiguration
                 {
-                    OperationOrder = new List<OperationConfiguration>
+                    OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Payment,
+                            OperationCode.Reservation,
+                            OperationCode.SendingEmail
                         }
                 }
             };
@@ -132,10 +129,10 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 HotelId = "001",
                 HotelConfiguration = new HotelConfiguration
                 {
-                    OperationOrder = new List<OperationConfiguration>
+                    OperationOrder = new List<string>
                         {
-                            new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                            new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)                       
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Payment
                         }
                 }
             };
@@ -165,9 +162,9 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
                 HotelId = "001",
                 HotelConfiguration = new HotelConfiguration
                 {
-                    OperationOrder = new List<OperationConfiguration>
+                    OperationOrder = new List<string>
                         {
-                            new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
+                            OperationCode.RecheckingPrice
                         }
                 }
             };

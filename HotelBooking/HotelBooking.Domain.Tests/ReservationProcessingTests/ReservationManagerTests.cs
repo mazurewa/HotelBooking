@@ -85,16 +85,16 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
         }
 
         [Test]
-        public void Should_Succeed_When_NoOperationAbortsProcess()
+        public void Should_Succeed_When_NoOperationFailed()
         {
             inputsValidator.Stub(x => x.ValidateInputs(Arg<string[]>.Is.Anything, Arg<Options>.Is.Anything)).Return(true);
             reservationFactory.Stub(x => x.CreateReservation(Arg<Options>.Is.Anything)).Return(new Reservation());
             var bookingResult = MockRepository.GenerateStub<BookingResult>();
             var succeededOperations = new List<OperationResult>
             {
-                new OperationResult {ShouldAbortBookingProcess = false},
-                new OperationResult {ShouldAbortBookingProcess = false},
-                new OperationResult {ShouldAbortBookingProcess = false}
+                new OperationResult {ExecutionResult = ExecutionResult.Success},
+                new OperationResult {ExecutionResult = ExecutionResult.Warning},
+                new OperationResult {ExecutionResult = ExecutionResult.Success}
             };
             bookingResult.Stub(x => x.OperationResults).Return(succeededOperations);
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);
@@ -112,9 +112,9 @@ namespace HotelBooking.App.Tests.ReservationProcessingTests
             var bookingResult = MockRepository.GenerateStub<BookingResult>();
             var succeededOperations = new List<OperationResult>
             {
-                new OperationResult {ShouldAbortBookingProcess = true},
-                new OperationResult {ShouldAbortBookingProcess = false},
-                new OperationResult {ShouldAbortBookingProcess = false}
+                new OperationResult {ExecutionResult = ExecutionResult.Success},
+                new OperationResult {ExecutionResult = ExecutionResult.Success},
+                new OperationResult {ExecutionResult = ExecutionResult.Failure}
             };
             bookingResult.Stub(x => x.OperationResults).Return(succeededOperations);
             operationsManager.Stub(x => x.ProcessOperations(Arg<Reservation>.Is.Anything)).Return(bookingResult);

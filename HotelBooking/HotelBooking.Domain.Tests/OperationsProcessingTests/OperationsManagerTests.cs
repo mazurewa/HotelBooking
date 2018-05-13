@@ -3,7 +3,6 @@ using HotelBooking.Domain;
 using HotelBooking.Domain.DataObjects;
 using HotelBooking.Domain.Enums;
 using HotelBooking.Domain.Models;
-using HotelBooking.Domain.Operations;
 using HotelBooking.Domain.OperationsProcessing;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -32,7 +31,7 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_GetOrderedOperationsForHotel()
         {
-            operationsProvider.Expect(x => x.GetOrderedOperations(reservation.Hotel)).Return(new List<IOperation>());
+            operationsProvider.Expect(x => x.GetOrderedOperations(reservation.Hotel)).Return(new List<Operation>());
 
             sut.ProcessOperations(reservation);
 
@@ -42,10 +41,9 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_ProcessAtLeastOneOperation()
         {
-            var operation = MockRepository.GenerateMock<IOperation>();
-            operation.Stub(x => x.Process(reservation)).Return( new OperationResult { ShouldAbortBookingProcess = false });
-         
-            var operationsToRun = new List<IOperation> { operation };
+            var operation = MockRepository.GenerateMock<Operation>("operationName");
+            operation.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Success);
+            var operationsToRun = new List<Operation> { operation };
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
            var bookingResult = sut.ProcessOperations(reservation);
@@ -56,32 +54,32 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_NotStopProcessing_When_NoOperationsFailed()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operation2 = MockRepository.GenerateMock<IOperation>();
-            operation2.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Expect(x => x.Execute(reservation)).Return(ExecutionResult.Success);
+            var operation2 = MockRepository.GenerateMock<Operation>("operationName");
+            operation2.Expect(x => x.Execute(reservation)).Return(ExecutionResult.Warning);
 
-            var operationsToRun = new List<IOperation> { operation1, operation2 };
+            var operationsToRun = new List<Operation> { operation1, operation2 };
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
             var bookingResult = sut.ProcessOperations(reservation);
 
-            operation1.AssertWasCalled(x => x.Process(reservation));
-            operation2.AssertWasCalled(x => x.Process(reservation));
+            operation1.VerifyAllExpectations();
+            operation2.VerifyAllExpectations();
         }
 
         [Test]
-        public void Should_StopProcessing_When_OperationFailedWithAbort()
+        public void Should_StopProcessing_When_OperationFailed()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operation2 = MockRepository.GenerateMock<IOperation>();
-            operation2.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operation3 = MockRepository.GenerateMock<IOperation>();
-            operation3.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = true });
-            var operation4 = MockRepository.GenerateMock<IOperation>();
-            operation4.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operationsToRun = new List<IOperation> { operation1, operation2, operation3, operation4 };
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Stub(x => x.Execute(reservation)).Return( ExecutionResult.Success );
+            var operation2 = MockRepository.GenerateMock<Operation>("operationName");
+            operation2.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Warning);
+            var operation3 = MockRepository.GenerateMock<Operation>("operationName");
+            operation3.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Failure);
+            var operation4 = MockRepository.GenerateMock<Operation>("operationName");
+            operation4.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Success);
+            var operationsToRun = new List<Operation> { operation1, operation2, operation3, operation4 };
 
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
@@ -96,10 +94,10 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_LogAborted_When_ProcessAborted()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Expect(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = true });
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Expect(x => x.Execute(reservation)).Return(ExecutionResult.Failure);
           
-            var operationsToRun = new List<IOperation> { operation1 };
+            var operationsToRun = new List<Operation> { operation1 };
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
             logger.Expect(x => x.Write(Arg<string>.Is.Anything)).Repeat.Once();
@@ -113,14 +111,14 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         [Test]
         public void Should_NotLogAborted_When_ProcessNotAborted()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operation2 = MockRepository.GenerateMock<IOperation>();
-            operation2.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
-            var operation3 = MockRepository.GenerateMock<IOperation>();
-            operation3.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Success);
+            var operation2 = MockRepository.GenerateMock<Operation>("operationName");
+            operation2.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Success);
+            var operation3 = MockRepository.GenerateMock<Operation>("operationName");
+            operation3.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Warning);
 
-            var operationsToRun = new List<IOperation> { operation1,operation2, operation3 };
+            var operationsToRun = new List<Operation> { operation1,operation2, operation3 };
 
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
@@ -131,12 +129,12 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         }
 
         [Test]
-        public void Should_ReturnFailure_When_ProcessAbortedDueToRequiredOperationFailure()
+        public void Should_ReturnFailure_When_AnyOperationFailed()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = true });
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Failure);
            
-            var operationsToRun = new List<IOperation> { operation1 };
+            var operationsToRun = new List<Operation> { operation1 };
 
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 
@@ -146,12 +144,12 @@ namespace HotelBooking.App.Tests.OperationsProcessingTests
         }
 
         [Test]
-        public void Should_ReturnSuccess_When_ProcessNotAborted()
+        public void Should_ReturnSuccess_When_NoOperationFailed()
         {
-            var operation1 = MockRepository.GenerateMock<IOperation>();
-            operation1.Stub(x => x.Process(reservation)).Return(new OperationResult { ShouldAbortBookingProcess = false });
+            var operation1 = MockRepository.GenerateMock<Operation>("operationName");
+            operation1.Stub(x => x.Execute(reservation)).Return(ExecutionResult.Success);
 
-            var operationsToRun = new List<IOperation> { operation1 };
+            var operationsToRun = new List<Operation> { operation1 };
 
             operationsProvider.Stub(x => x.GetOrderedOperations(reservation.Hotel)).Return(operationsToRun);
 

@@ -44,6 +44,9 @@
     <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -60,30 +63,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\TestNinjectModule.cs" />
-    <Compile Include="DataAccess\FakeHotelsProvider.cs" />
     <Compile Include="Features\BookingHotelRoom.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BookingHotelRoom.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\PaymentFeature.feature.cs">
+    <Compile Include="Features\PaymentFeature1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PaymentFeature.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\ProduceBookingResult.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProduceBookingResult.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\SendingEmail.feature.cs">
+    <Compile Include="Features\SendingEmail1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SendingEmail.feature</DependentUpon>
     </Compile>
-    <Compile Include="Steps\ProduceBookingResultSteps.cs" />
+    <Compile Include="Steps\BookingHotelRoom.cs" />
+    <Compile Include="Steps\CommonSteps.cs" />
+    <Compile Include="Steps\SendingEmail.cs" />
+    <Compile Include="Configuration\ConsoleLogger.cs" />
+    <Compile Include="Configuration\TestNinjectModule.cs" />
+    <Compile Include="DataAccess\FakeHotelsProvider.cs" />
+    <Compile Include="Operations\OperationWithWarning.cs" />
+    <Compile Include="Operations\OperationWithSuccess.cs" />
+    <Compile Include="Operations\OperationWithFailure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\PaymentFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,15 +98,11 @@
     </None>
     <None Include="Features\PaymentFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PaymentFeature.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\ProduceBookingResult.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ProduceBookingResult.feature.cs</LastGenOutput>
+      <LastGenOutput>PaymentFeature1.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\SendingEmail.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SendingEmail.feature.cs</LastGenOutput>
+      <LastGenOutput>SendingEmail1.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

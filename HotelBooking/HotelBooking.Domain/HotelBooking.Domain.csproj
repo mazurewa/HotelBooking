@@ -64,7 +64,6 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\HotelConfiguration.cs" />
-    <Compile Include="Models\OperationConfiguration.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="OperationsProcessing\AllOperationsProvider.cs" />
     <Compile Include="OperationsProcessing\ExecutionResult.cs" />
@@ -74,8 +73,7 @@
     <Compile Include="OperationsProcessing\OperationsManager.cs" />
     <Compile Include="OperationsProcessing\OperationsProvider.cs" />
     <Compile Include="OperationsProcessing\Result.cs" />
-    <Compile Include="Operations\IOperation.cs" />
-    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="OperationsProcessing\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\OperationCode.cs" />
     <Compile Include="ReservationProcessing\IInputValidator.cs" />

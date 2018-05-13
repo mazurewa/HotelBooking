@@ -1,5 +1,4 @@
-﻿using HotelBooking.Domain.Operations;
-using HotelBooking.Domain.OperationsProcessing;
+﻿using HotelBooking.Domain.OperationsProcessing;
 using HotelBooking.Domain.ReservationProcessing;
 using HotelBooking.Domain.DataAccess;
 
@@ -16,6 +15,7 @@ namespace HotelBooking.Domain.Configuration
             Bind<IOperationsProvider>().To<OperationsProvider>();
             Bind<IHotelsProvider>().To<HotelsProvider>();
             Bind<IHotelsRepository>().To<HotelRepository>();
+            Bind<IAllOperationsProvider>().To<AllOperationsProvider>();
         }
     }
 }

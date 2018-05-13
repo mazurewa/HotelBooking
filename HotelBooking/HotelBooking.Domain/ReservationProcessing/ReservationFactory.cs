@@ -27,7 +27,7 @@ namespace HotelBooking.Domain.ReservationProcessing
 
             return new Reservation()
             {
-                ReservationId = GetReservationId(),
+                Id = GetReservationId(),
                 Hotel = hotel,
                 ReservationDate = options.ReservationDate,
                 CreditCard = options.CreditCard,

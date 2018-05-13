@@ -13,28 +13,28 @@ namespace HotelBooking.Domain.DataAccess
                 new Hotel
                 {
                     HotelId = "001",
-                    HotelConfiguration = new HotelConfiguration
+                     HotelConfiguration = new HotelConfiguration
                     {
-                        OperationOrder = new List<OperationConfiguration>
+                       OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Payment,
+                            OperationCode.Reservation,
+                            OperationCode.SendingEmail
                         }
                     }
                 },
                 new Hotel
                 {
                     HotelId = "002",
-                     HotelConfiguration = new HotelConfiguration
+                    HotelConfiguration = new HotelConfiguration
                     {
-                        OperationOrder = new List<OperationConfiguration>
+                       OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: false),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: false),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Reservation,
+                            OperationCode.Payment,
+                            OperationCode.SendingEmail
                         }
                     }
                 },
@@ -42,26 +42,26 @@ namespace HotelBooking.Domain.DataAccess
                 {
                     HotelId = "003",
                      HotelConfiguration = new HotelConfiguration
-                    {
-                        OperationOrder = new List<OperationConfiguration>
-                        {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
-                        }
-                    }
+                     {
+                         OperationOrder = new List<string>
+                         {
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Reservation,
+                            OperationCode.Payment
+                         }
+                     }
                 },
                 new Hotel
                 {
                     HotelId = "004",
                     HotelConfiguration = new HotelConfiguration
                     {
-                       OperationOrder = new List<OperationConfiguration>
+                       OperationOrder = new List<string>
                         {
-                        new OperationConfiguration(OperationCode.RecheckingPrice, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Reservation, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.SendingEmail, isRequiredToSucceed: true),
-                        new OperationConfiguration(OperationCode.Payment, isRequiredToSucceed: true)
+                            OperationCode.RecheckingPrice,
+                            OperationCode.Reservation,
+                            OperationCode.SendingEmail,
+                            OperationCode.Payment
                         }
                     }
                 }

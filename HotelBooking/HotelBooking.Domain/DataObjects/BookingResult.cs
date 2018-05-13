@@ -21,8 +21,9 @@ namespace HotelBooking.Domain.DataObjects
             {
                 return Result.Failure;
             }
-            var hasAnyRequiredOperationFailed = OperationResults.Any(x => x.ShouldAbortBookingProcess);
-            return hasAnyRequiredOperationFailed ? Result.Failure : Result.Success;
+            var hasAnyOperationFailed = OperationResults.Any(x => x.ExecutionResult 
+            == OperationsProcessing.ExecutionResult.Failure);
+            return hasAnyOperationFailed ? Result.Failure : Result.Success;
         }
     }
 }

@@ -18,21 +18,22 @@ namespace HotelBooking.AcceptanceTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PaymentFeature")]
-    public partial class PaymentFeatureFeature
+    [NUnit.Framework.DescriptionAttribute("SendingEmail")]
+    [NUnit.Framework.CategoryAttribute("email")]
+    public partial class SendingEmailFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "PaymentFeature.feature"
+#line 1 "SendingEmail.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PaymentFeature", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SendingEmail", null, ProgrammingLanguage.CSharp, new string[] {
+                        "email"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,20 +66,41 @@ namespace HotelBooking.AcceptanceTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Failed reservation - booking with not authorized payment")]
-        public virtual void FailedReservation_BookingWithNotAuthorizedPayment()
+        [NUnit.Framework.DescriptionAttribute("Email is in invalid format")]
+        public virtual void EmailIsInInvalidFormat()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Failed reservation - booking with not authorized payment", ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Email is in invalid format", ((string[])(null)));
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("the customer credit card is not authorized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 5
+ testRunner.Given("the email address input is in invalid format", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
  testRunner.When("I request for hotel reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 7
  testRunner.Then("Booking result includes no operations results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
+#line 8
  testRunner.And("Booking result has failure overall result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Email is not delivered")]
+        public virtual void EmailIsNotDelivered()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Email is not delivered", ((string[])(null)));
+#line 10
+this.ScenarioSetup(scenarioInfo);
+#line 11
+ testRunner.Given("the email has not been delivered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.When("I request for hotel reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("Operations succeeds with warning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("Booking succeeds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("Warning is logged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

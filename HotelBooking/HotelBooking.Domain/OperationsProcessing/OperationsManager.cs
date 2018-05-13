@@ -1,5 +1,4 @@
-﻿using System;
-using HotelBooking.Domain.Models;
+﻿using HotelBooking.Domain.Models;
 using HotelBooking.Domain.DataObjects;
 
 namespace HotelBooking.Domain.OperationsProcessing
@@ -26,7 +25,7 @@ namespace HotelBooking.Domain.OperationsProcessing
                 LogOperationResult(operationResult);
                 bookingResult.OperationResults.Add(operationResult);
 
-                if (operationResult.ShouldAbortBookingProcess)
+                if (operationResult.ExecutionResult == ExecutionResult.Failure)
                 {
                     AbortProcess(reservation, operation.OperationName);
                     break;
@@ -38,12 +37,12 @@ namespace HotelBooking.Domain.OperationsProcessing
 
         private void LogOperationResult(OperationResult operationResult)
         {
-            _logger.Write(string.Format($"{operationResult.OperationName} - Result: {operationResult.ExecutionResult}, Should abort the process: {operationResult.ShouldAbortBookingProcess}"));
+            _logger.Write(string.Format($"{operationResult.OperationName} - Result: {operationResult.ExecutionResult}"));
         }
 
         private void AbortProcess(Reservation reservation, string operationName)
         {
-            _logger.Write($"Reservation process aborted due to required operation {operationName} failure"); ;
+            _logger.Write($"Reservation process aborted due to {operationName} operation failure"); ;
         }
     }
 }

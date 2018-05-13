@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HotelBooking.Domain.Models;
-using HotelBooking.Domain.Operations;
 
 namespace HotelBooking.Domain.OperationsProcessing
 {
@@ -31,17 +30,17 @@ namespace HotelBooking.Domain.OperationsProcessing
             }
         }
 
-        public IList<IOperation> GetOrderedOperations(Hotel hotel)
+        public IList<Operation> GetOrderedOperations(Hotel hotel)
         {
             var hotelOperations = hotel.HotelConfiguration.OperationOrder;
-            var orderedOperations = new List<IOperation>();
+            var orderedOperations = new List<Operation>();
 
-            foreach (var operationConfiguration in hotelOperations)
+            foreach (var operationName in hotelOperations)
             {
-                var selectedOperation = AllOperations.Where(x => x == operationConfiguration.Name).FirstOrDefault();
+                var selectedOperation = AllOperations.Where(x => x == operationName).FirstOrDefault();
                 if (selectedOperation != null)
                 {
-                    orderedOperations.Add(new Operation(operationConfiguration));
+                    orderedOperations.Add(new Operation(selectedOperation));
                 }
             }
 

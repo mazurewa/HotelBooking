@@ -55,7 +55,7 @@
     <Compile Include="DataAccessTests\HotelRepositoryTests.cs" />
     <Compile Include="OperationsProcessingTests\OperationsManagerTests.cs" />
     <Compile Include="OperationsProcessingTests\OperationsProviderTests.cs" />
-    <Compile Include="OperationsTests\OperationTests.cs" />
+    <Compile Include="OperationsProcessingTests\OperationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationProcessingTests\InputValidatorTests.cs" />
     <Compile Include="ReservationProcessingTests\ReservationFactoryTests.cs" />

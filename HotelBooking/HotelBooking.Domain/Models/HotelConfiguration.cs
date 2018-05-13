@@ -4,6 +4,6 @@ namespace HotelBooking.Domain.Models
 {
     public class HotelConfiguration
     {
-        public List<OperationConfiguration> OperationOrder { get; set; }
+        public List<string> OperationOrder { get; set; }
     }
 }

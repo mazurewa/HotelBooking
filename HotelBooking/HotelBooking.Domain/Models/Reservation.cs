@@ -4,7 +4,7 @@ namespace HotelBooking.Domain.Models
 {
     public class Reservation
     {
-        public string ReservationId { get; set; }
+        public string Id { get; set; }
         public Hotel Hotel { get; set; }
         public DateTime ReservationDate { get; set; }
         public decimal Cost { get; set; }
